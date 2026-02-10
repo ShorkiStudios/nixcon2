@@ -39,6 +39,7 @@
           systems.barbados
           core.all
           de.all
+          progs."3d".all
           progs.audio.all
           progs.misc.all
           progs.coding.all

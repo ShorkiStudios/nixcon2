@@ -1,6 +1,10 @@
 {
   userSettings = {
     username = "shorki";
+    git = {
+      name = "Shorki";
+      email = "shorkicalypso@gmail.com";
+    };
   };
 
   baseStyle = {
@@ -35,11 +39,15 @@
           systems.barbados
           core.all
           de.all
+          progs.audio.all
+          progs.misc.all
           progs.coding.all
           progs.essential.all
           progs.networking.all
           progs.social.all
-	  progs.utils.all
+          progs.gaming.all
+          progs.utils.all
+          progs.virtualization.all
         ];
     };
   };

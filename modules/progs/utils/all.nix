@@ -8,11 +8,13 @@
       gh
       kdeconnect
       missioncenter
+      mprisence
       nautilus
       nh
+      strawberry
       vlc
       yazi
       protonup
-      mprisence
+      
     ];
 }

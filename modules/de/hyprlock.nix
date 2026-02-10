@@ -43,7 +43,7 @@
               inner_color = "rgba(0, 0, 0, 0)";
               outer_color = "rgb(255, 255, 255)";
               outline_thickness = 1;
-              placeholder_text = "<i>Password...</i>";
+              placeholder_text = "<i>TELLLL MEEEEEE</i>";
               check_color = "rgb(255, 255, 100)";
               fail_color = "rgb(255, 100, 100)";
               fail_text = "<i>Incorrect password</i>";

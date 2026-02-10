@@ -9,7 +9,7 @@
 
   baseStyle = {
     font = {
-      size = 15;
+      size = 11;
       package = pkgs: pkgs.nerd-fonts.jetbrains-mono;
       name = "JetBrainsMono Nerd Font Propo";
     };

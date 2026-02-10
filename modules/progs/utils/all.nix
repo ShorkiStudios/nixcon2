@@ -12,5 +12,6 @@
       nh
       vlc
       yazi
+      protonup
     ];
 }

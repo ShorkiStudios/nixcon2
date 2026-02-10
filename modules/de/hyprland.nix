@@ -48,8 +48,8 @@
             "SUPER SHIFT, ESCAPE, forcekillactive"
             "SUPER, mouse:274, killactive" # closewindow undercursor
             "SUPER SHIFT, mouse:274, killactive" # killwindow undercursor
-            "SUPER, J, togglefloating"
-            "SUPER, T, fullscreen"
+            "SUPER, SPACE, togglefloating"
+            "SUPER, RETURN, fullscreen"
             "SUPER, TAB, cyclenext"
             "SUPER, TAB, bringactivetotop"
             "SUPER SHIFT, TAB, cyclenext, prev"

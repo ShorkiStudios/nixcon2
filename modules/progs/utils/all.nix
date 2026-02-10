@@ -13,5 +13,6 @@
       vlc
       yazi
       protonup
+      mprisence
     ];
 }

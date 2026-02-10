@@ -6,5 +6,6 @@
       # tor
       winbox
       wireguard
+      freenet
     ];
 }

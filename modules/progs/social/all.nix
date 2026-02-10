@@ -1,9 +1,10 @@
 {
   deps =
     modules: with modules.progs.social; [
-      discord
+      #discord
       fluffychat
       telegram
       zoom
+      vesktop
     ];
 }

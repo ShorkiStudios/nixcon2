@@ -32,7 +32,7 @@
         };
       };
       styleOverrides = {
-        font.size = 20;
+        font.size = 16;
       };
       modules =
         modules: with modules; [
@@ -46,6 +46,7 @@
           progs.essential.all
           progs.networking.all
           progs.social.all
+          progs.studying.all
           progs.gaming.all
           progs.utils.all
           progs.virtualization.all

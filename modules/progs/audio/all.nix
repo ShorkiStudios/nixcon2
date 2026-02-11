@@ -5,5 +5,6 @@
       audacity
       carla
       qpwgraph
+      quodlibet
     ];
 }

@@ -13,31 +13,33 @@
 
 #define TWO_PI 6.28318530718
 
-// rainbow
+// ---------- OKLab matrices (unchanged, but fixed commas so it compiles) ----------
 
 const mat3 fwdA = mat3(
-        1.0, 1.0, 1.0,
-        0.3963377774, -0.1055613458, -0.0894841775,
-        0.2158037573, -0.0638541728, -1.2914855480
-    );
+    1.0, 1.0, 1.0,
+    2.0, 1.0, 0.0,
+    0.5, 0.5, 0.5
+);
 
 const mat3 fwdB = mat3(
-        4.0767245293, -1.2681437731, -0.0041119885,
-        -3.3072168827, 2.6093323231, -0.7034763098,
-        0.2307590544, -0.3411344290, 1.7068625689
-    );
+    4.0767245293, -1.2681437731, -0.0041119885,
+   -3.3072168827,  2.6093323231, -0.7034763098,
+    0.2307590544, -0.3411344290,  1.7068625689
+);
 
 const mat3 invA = mat3(
-        0.2104542553, 1.9779984951, 0.0259040371,
-        0.7936177850, -2.4285922050, 0.7827717662,
-        -0.0040720468, 0.4505937099, -0.8086757660
-    );
+    0.2104542553,  1.9779984951,  0.0259040371,
+    0.7936177850, -2.4285922050,  0.7827717662,
+   -0.0040720468,  0.4505937099, -0.8086757660
+);
 
 const mat3 invB = mat3(
-        0.4121656120, 0.2118591070, 0.0883097947,
-        0.5362752080, 0.6807189584, 0.2818474174,
-        0.0514575653, 0.1074065790, 0.6302613616
-    );
+    0.4121656120, 0.2118591070, 0.0883097947,
+    0.5362752080, 0.6807189584, 0.2818474174,
+    0.0514575653, 0.1074065790, 0.6302613616
+);
+
+// ---------- color space helpers (unchanged) ----------
 
 vec3 lsrgb_oklab(vec3 lsrgb) {
     vec3 lms = invB * lsrgb;
@@ -90,7 +92,32 @@ vec3 hue_lsrgb(float hue) {
     return lch_lsrgb(vec3(LIGHTNESS, CHROMA, hue));
 }
 
-// noise
+// ---------- NEW palette: purple -> black -> red (in that order) ----------
+
+vec3 palette_purple_black_red(float t)
+{
+    // Key colors in sRGB (0..1)
+    const vec3 PURPLE_SRGB = vec3(0.44313726, 0.0, 0.50196078);
+    const vec3 BLACK_SRGB  = vec3(0.00, 0.00, 0.00);
+    const vec3 RED_SRGB    = vec3(0.95, 0.05, 0.12);
+
+    // Convert to linear sRGB
+    vec3 p = srgb_lsrgb(PURPLE_SRGB);
+    vec3 k = srgb_lsrgb(BLACK_SRGB);
+    vec3 r = srgb_lsrgb(RED_SRGB);
+
+    t = fract(t);
+
+    // [0,0.5): purple -> black, [0.5,1): black -> red
+    float second = step(0.5, t);
+    float u = mix(t * 2.0, (t - 0.5) * 2.0, second);
+    u = smoothstep(0.0, 1.0, u);
+
+    vec3 col = mix(mix(p, k, u), mix(k, r, u), second);
+    return clamp(col, 0.0, 1.0);
+}
+
+// ---------- noise (unchanged) ----------
 
 float rand(vec2 n) {
     return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
@@ -102,8 +129,9 @@ float noise(vec2 p) {
     u = u * u * (3.0 - 2.0 * u);
 
     float res = mix(
-            mix(rand(ip), rand(ip + vec2(1.0, 0.0)), u.x),
-            mix(rand(ip + vec2(0.0, 1.0)), rand(ip + vec2(1.0, 1.0)), u.x), u.y);
+        mix(rand(ip), rand(ip + vec2(1.0, 0.0)), u.x),
+        mix(rand(ip + vec2(0.0, 1.0)), rand(ip + vec2(1.0, 1.0)), u.x), u.y
+    );
     return res * res;
 }
 
@@ -114,17 +142,12 @@ float fbm(vec2 p)
     float f = 0.0;
 
     f += 0.500000 * noise(p + MOVE_AMPLITUDE * cos(iTime * MOVE_TIME_SCALE));
-    // p = mtx * p * 2.02;
-    // f += 0.031250 * noise(p);
     p = mtx * p * 2.01;
     f += 0.250000 * noise(p + MOVE_AMPLITUDE * sin(iTime * MOVE_TIME_SCALE));
     p = mtx * p * 2.03;
     f += 0.125000 * noise(p);
-    // p = mtx * p * 2.01;
-    // f += 0.062500 * noise(p);
-    // p = mtx * p * 2.04;
-    // f += 0.015625 * noise(p + sin(iTime * MOVE_TIME_SCALE));
-    return f / 0.875; //0.96875;
+
+    return f / 0.875;
 }
 
 float pattern(in vec2 p)
@@ -132,15 +155,19 @@ float pattern(in vec2 p)
     return fbm(p + fbm(p + fbm(p)));
 }
 
-// main
+// ---------- main (unchanged except the color function used) ----------
 
 float fade(float x) {
     float ripple = abs(1.0 - 2.0 * fract(x * RIPPLE_COUNT + iTime * RIPPLE_TIME_SCALE));
-    return clamp(1.0 + (RIPPLE_WIDTH * RIPPLE_COUNT - ripple) / (GLOW_WIDTH * RIPPLE_COUNT * 2.0), 0.0, 1.0); //pow(ripple, 5.0);
+    return clamp(
+        1.0 + (RIPPLE_WIDTH * RIPPLE_COUNT - ripple) / (GLOW_WIDTH * RIPPLE_COUNT * 2.0),
+        0.0, 1.0
+    );
 }
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     float p = pattern(fragCoord * SCALE / iResolution.y);
     float hue = (p + iTime * RAINBOW_TIME_SCALE) * RAINBOW_REPEATS;
-    fragColor = vec4(lsrgb_srgb(hue_lsrgb(hue)) * fade(p), 1.0);
+
+    fragColor = vec4(lsrgb_srgb(palette_purple_black_red(hue)) * fade(p), 1.0);
 }

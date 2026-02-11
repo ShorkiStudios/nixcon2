@@ -11,7 +11,7 @@
         shaderbg
       ];
       wayland.windowManager.hyprland.settings.exec-once = [
-        "shaderbg ${systemSettings.monitor.name} ${./fbm.frag}"
+        "shaderbg ${systemSettings.monitor.name} ${./win95.frag}"
       ];
       # programs.niri.settings.spawn-at-startup = [
       #   {

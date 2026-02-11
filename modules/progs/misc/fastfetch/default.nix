@@ -8,17 +8,18 @@
           logo = {
             source = "${./logo.txt}";
             type = "file";
-            color =
-              let
-                palette = map color.toHex (color.palette 6 0.8 0.1);
-              in
-              builtins.listToAttrs (
-                builtins.genList (i: {
-                  name = toString (i + 1);
-                  value = builtins.elemAt palette i;
-                }) 6
-              );
+
+            # REPLACE your current `color = let ...` with this:
+            color = {
+              "1" = "#FF218C";
+              "2" = "#FF218C"; # pink
+              "3" = "#FFD800";
+              "4" = "#FFD800"; # yellow
+              "5" = "#21B1FF";
+              "6" = "#21B1FF"; # blue
+            };
           };
+
           modules = [
             "title"
             "separator"
@@ -26,6 +27,18 @@
             "host"
             "kernel"
             "uptime"
+            {
+              type = "command";
+              key = "OS Age";
+              text = ''
+                birth=$(stat -c %W /)
+                if [ "$birth" -le 0 ]; then
+                  birth=$(stat -c %Y /etc/machine-id)
+                fi
+                now=$(date +%s)
+                echo $(((now - birth) / 86400)) days
+              '';
+            }
             "packages"
             "shell"
             "display"
@@ -41,6 +54,7 @@
           ];
         };
       };
+
       programs.bash.bashrcExtra = "fastfetch";
     };
 }

@@ -3,6 +3,7 @@
     { ... }:
     {
       hardware.graphics.enable = true;
+      services.playerctld.enable = true;
       nix.settings = {
         substituters = [ "https://hyprland.cachix.org" ];
         trusted-substituters = [ "https://hyprland.cachix.org" ];
@@ -22,6 +23,7 @@
         glib
         hyprshot
         brightnessctl
+        playerctl
       ];
       wayland.windowManager.hyprland = {
         enable = true;
@@ -108,6 +110,15 @@
           ];
           binds = {
             scroll_event_delay = 100;
+            wayland.windowManager.hyprland.settings = {
+            
+              bindl = [
+                ",XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
+                ",XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next"
+                ",XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous"
+              ];
+            };
+
           };
           general = {
             layout = "dwindle";

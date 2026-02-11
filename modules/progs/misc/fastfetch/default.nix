@@ -9,7 +9,6 @@
             source = "${./logo.txt}";
             type = "file";
 
-            # REPLACE your current `color = let ...` with this:
             color = {
               "1" = "#FF218C";
               "2" = "#FF218C"; # pink

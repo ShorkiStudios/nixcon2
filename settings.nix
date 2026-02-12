@@ -49,6 +49,7 @@
           progs.studying.all
           progs.gaming.all
           progs.utils.all
+          progs.video.all
           progs.virtualization.all
         ];
     };

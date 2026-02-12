@@ -25,14 +25,14 @@
     }:
     rustPlatform.buildRustPackage rec {
       pname = "freenet";
-      version = "0.1.121";
+      version = "0.1.124";
 
       src = fetchCrate {
         inherit pname version;
-        sha256 = "sha256-TrYsiirL/LDrxj78jNK6DN4LPhfQXZDk4ENkWo7DzMI=";
+        sha256 = "sha256-tnriRHdbvH4+29ruN9s+e0+96V33FC1z3eO3X57XNVI=";
       };
 
-      cargoHash = "sha256-WKN4P+fbdoLimx/1nrIvCxFFfPLd1tmGsYvy5CJoINA=";
+      cargoHash = "sha256-voe66fnLgEisvWeaq9e6Il7Ymrz2LgXDYRgq2qbylWY=";
 
       doCheck = false;
 

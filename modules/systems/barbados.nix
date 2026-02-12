@@ -57,7 +57,7 @@
           unixAuth = true;
         };
         login = {
-          fprintAuth = true;
+          fprintAuth = false;
           unixAuth = true;
         };
         polkit-1 = {
@@ -65,7 +65,7 @@
           unixAuth = true;
         };
         hyprlock = {
-          fprintAuth = true;
+          fprintAuth = false;
           unixAuth = true;
         };
       };

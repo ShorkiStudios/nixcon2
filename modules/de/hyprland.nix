@@ -40,6 +40,7 @@
               kb_options = "grp:alt_shift_toggle";
               touchpad.natural_scroll = true;
               # follow_mouse = 0;
+              numlock_by_default = true;
             }
           ];
           monitor = [
@@ -67,22 +68,22 @@
             # "SUPER, Right, movefocus, r"
             # "SUPER, mouse_down, movefocus, l"
             # "SUPER, mouse_up, movefocus, r"
-            "SUPER, Left, layoutmsg, move -col"
-            "SUPER, Right, layoutmsg, move +col"
-            "SUPER, mouse_down, layoutmsg, move -col"
-            "SUPER, mouse_up, layoutmsg, move +col"
+            #"SUPER, Left, layoutmsg, move -col"
+            #"SUPER, Right, layoutmsg, move +col"
+            #"SUPER, mouse_down, layoutmsg, move -col"
+            #"SUPER, mouse_up, layoutmsg, move +col"
 
-            # "SUPER SHIFT, Up, movewindow, u"
-            # "SUPER SHIFT, Down, movewindow, d"
-            # "SUPER SHIFT, Left, movewindow, l"
-            # "SUPER SHIFT, Right, movewindow, r"
+             "SUPER SHIFT, Up, movewindow, u"
+             "SUPER SHIFT, Down, movewindow, d"
+             "SUPER SHIFT, Left, movewindow, l"
+             "SUPER SHIFT, Right, movewindow, r"
 
-            "SUPER SHIFT, Up, layoutmsg, movewindowto u"
-            "SUPER SHIFT, Down, layoutmsg, movewindowto d"
-            "SUPER SHIFT, Left, layoutmsg, movewindowto l"
-            "SUPER SHIFT, Right, layoutmsg, movewindowto r"
-            "SUPER SHIFT, mouse_down, layoutmsg, movewindowto l"
-            "SUPER SHIFT, mouse_up, layoutmsg, movewindowto r"
+            #"SUPER SHIFT, Up, layoutmsg, movewindowto u"
+            #"SUPER SHIFT, Down, layoutmsg, movewindowto d"
+            #"SUPER SHIFT, Left, layoutmsg, movewindowto l"
+            #"SUPER SHIFT, Right, layoutmsg, movewindowto r"
+            #"SUPER SHIFT, mouse_down, layoutmsg, movewindowto l"
+            #"SUPER SHIFT, mouse_up, layoutmsg, movewindowto r"
 
             ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
             ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.5"

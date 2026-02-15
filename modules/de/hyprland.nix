@@ -4,6 +4,8 @@
     {
       hardware.graphics.enable = true;
       services.playerctld.enable = true;
+      #services.flatpak.enable = true;
+      
       nix.settings = {
         substituters = [ "https://hyprland.cachix.org" ];
         trusted-substituters = [ "https://hyprland.cachix.org" ];
@@ -54,9 +56,9 @@
             "SUPER, SPACE, togglefloating"
             "SUPER, RETURN, fullscreen"
             "SUPER, TAB, cyclenext"
-            "SUPER, TAB, bringactivetotop"
+            "SUPER, TAB, swapnext"
             "SUPER SHIFT, TAB, cyclenext, prev"
-            "SUPER SHIFT, TAB, bringactivetotop"
+            "SUPER SHIFT, TAB, swapnext"
 
             "SUPER CTRL SHIFT, S, exec, shutdown now"
             "SUPER CTRL SHIFT, R, exec, reboot"

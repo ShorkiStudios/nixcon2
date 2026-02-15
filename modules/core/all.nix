@@ -4,6 +4,7 @@
       bootloader.default
       bluetooth
       boot-logging
+      flatpak
       internationalisation
       kernel
       mounting

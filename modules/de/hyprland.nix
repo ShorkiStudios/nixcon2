@@ -5,6 +5,8 @@
       hardware.graphics.enable = true;
       services.playerctld.enable = true;
       #services.flatpak.enable = true;
+      programs.appimage.enable = true;
+      programs.appimage.binfmt = true;
       
       nix.settings = {
         substituters = [ "https://hyprland.cachix.org" ];

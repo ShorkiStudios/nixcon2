@@ -2,7 +2,7 @@
   deps =
     modules: with modules.progs.coding; [
       languages.all
-      vscodium
+      #vscodium
       zeditor.default
     ];
 }

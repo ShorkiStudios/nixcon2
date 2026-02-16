@@ -8,7 +8,7 @@
       programs.zen-browser = {
         enable = true;
         policies = {
-          DisableAppUpdate = true;
+          DisableAppUpdate = false;
           DisableTelemetry = true;
           # https://mozilla.github.io/policy-templates/
         };

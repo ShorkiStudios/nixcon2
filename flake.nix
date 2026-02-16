@@ -1,5 +1,5 @@
 {
-  description = "ttofu's nixos config";
+  description = "shorki's nixos config";
 
   inputs = {
     nixpkgs = {

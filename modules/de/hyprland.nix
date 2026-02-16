@@ -1,19 +1,31 @@
 {
-  os =
-    { ... }:
-    {
-      hardware.graphics.enable = true;
-      services.playerctld.enable = true;
-      #services.flatpak.enable = true;
-      programs.appimage.enable = true;
-      programs.appimage.binfmt = true;
-      
-      nix.settings = {
-        substituters = [ "https://hyprland.cachix.org" ];
-        trusted-substituters = [ "https://hyprland.cachix.org" ];
-        trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-      };
+  os = { pkgs, ... }: {
+    hardware.graphics.enable = true;
+    services.playerctld.enable = true;
+    services.flatpak.enable = true;
+
+    programs.appimage.enable = true;
+    programs.appimage.binfmt = true;
+
+    xdg.portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+
+      # Required when xdg.portal.enable = true
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-hyprland
+        xdg-desktop-portal-gtk
+      ];
     };
+
+    nix.settings = {
+      substituters = [ "https://hyprland.cachix.org" ];
+      trusted-substituters = [ "https://hyprland.cachix.org" ];
+      trusted-public-keys = [
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      ];
+    };
+  };
   home =
     {
       inputs,

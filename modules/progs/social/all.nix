@@ -6,7 +6,7 @@
       fediwall
       #fluffychat
       #stoat
-      #telegram
+      telegram
       zoom
       vesktop
     ];

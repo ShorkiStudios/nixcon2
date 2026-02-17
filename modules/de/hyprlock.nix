@@ -46,7 +46,7 @@
               placeholder_text = "<i>what is your dirty secret??</i>";
               check_color = "rgb(255, 255, 100)";
               fail_color = "rgb(255, 100, 100)";
-              fail_text = "<i>Incorrect password</i>";
+              fail_text = "<i>Nahhhh</i>";
             }
           ];
           label = [

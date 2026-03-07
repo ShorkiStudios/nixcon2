@@ -8,6 +8,8 @@
     }:
 
     {
+      environment.systemPackages = [ pkgs.android-tools ];
+
       services.wivrn = {
         enable = true;
         openFirewall = true;
@@ -49,12 +51,10 @@
           src.overrideAttrs (prevAttrs: {
             preFixup = (builtins.elemAt prevAttrs.preFixup 0) + ''
               wrapProgram "$out/bin/wivrn-server" \
-                --prefix LD_LIBRARY_PATH : ${
-                  lib.makeLibraryPath [
-                    pkgs.sdl2-compat
-                    pkgs.udev
-                  ]
-                }
+                --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [
+                  pkgs.sdl2-compat
+                  pkgs.udev
+                ]}
             '';
           });
       };

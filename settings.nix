@@ -51,6 +51,7 @@
           progs.utils.all
           progs.video.all
           progs.virtualization.all
+          progs.vr.all
         ];
     };
   };

@@ -1,7 +1,7 @@
 {
   deps =
     modules: with modules.progs.virtualization; [
-      winboat
-      wine
+      #winboat
+      #wine
     ];
 }

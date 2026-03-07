@@ -46,9 +46,9 @@
         package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
         portalPackage =
           inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-        plugins = [
-          inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprscrolling
-        ];
+        # plugins = [
+        #   inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprscrolling
+        # ];
         settings = {
           input = [
             {
@@ -173,14 +173,14 @@
             no_donation_nag = true;
             no_update_news = true;
           };
-          plugin = {
-            hyprscrolling = {
-              column_width = 0.9;
-              fullscreen_on_one_column = true;
-              follow_focus = false;
-              focus_fit_method = 0;
-            };
-          };
+          # plugin = {
+          #   hyprscrolling = {
+          #     column_width = 0.9;
+          #     fullscreen_on_one_column = true;
+          #     follow_focus = false;
+          #     focus_fit_method = 0;
+          #   };
+          # };
         };
       };
       home.sessionVariables = {

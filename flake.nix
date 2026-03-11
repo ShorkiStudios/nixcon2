@@ -42,6 +42,11 @@
       url = "github:WiVRn/WiVRn/v25.12";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    freenet = {
+          url = "github:freenet/freenet-core";
+          inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = inputs: ((import ./lib/builder.nix) inputs);
